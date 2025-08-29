@@ -17,5 +17,5 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag my-image-name:${{github.run_number}}
     - name: Build latest
-      run: docker build . --file Dockerfile --tag my-image-name:${{github.run_number}}
+      run: docker build . --file Dockerfile --tag my-image-name
 
