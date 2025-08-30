@@ -36,8 +36,8 @@ jobs:
         username: ec2-user
         key: ${{secrets.KEY}}
         script:
-           docker stop app24 || echo "main"
-           docker rm app24 || echo "main"
+           docker stop app24 || echo ""
+           docker rm app24 || echo ""
            docker run -d --name app24 -p 8081:5001 ${{secrets.REGISTRY_USERNAME}}/my-image-name:${{github.run_number}}
 
 
