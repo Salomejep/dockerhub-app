@@ -25,3 +25,21 @@ jobs:
     - name: Push image to Registry
       run: docker push ${{secrets.REGISTRY_USERNAME}}/my-image-name:${{github.run_number}}
 
+  deploy:
+    needs: build  
+    runs-on: ubuntu-latest
+    steps: 
+    - name: SSH to server
+      uses: appleboy/ssh-action@v1.0.3
+      with:
+        host: 44.223.64.59
+        username: ec2-user
+        key: ${{secrets.KEY}}
+        script:
+           docker stop web1 || echo "main"
+           docker rm web1 || echo "main"
+           docker run -d --name web1 -p 8081:5001 ${{secrets.REGISTRY_USERNAME}}/my-image-name:${{github.run_number}}
+
+
+
+
