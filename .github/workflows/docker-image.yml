@@ -32,8 +32,8 @@ jobs:
     - name: SSH to server
       uses: appleboy/ssh-action@v1.0.3
       with:
-        host: 44.223.64.59
-        username: ec2-user
+        host: ${{secrets.HOST}}
+        username: ${{vars.username}}
         key: ${{secrets.KEY}}
         script: |
            docker stop app24 || echo ""
