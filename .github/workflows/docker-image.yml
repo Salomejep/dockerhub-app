@@ -36,8 +36,8 @@ jobs:
         username: ec2-user
         key: ${{secrets.KEY}}
         script:
-           docker stop web1 || echo "main"
-           docker rm web1 || echo "main"
+           docker stop appi || echo "main"
+           docker rm appi || echo "main"
            docker run -d --name web1 -p 8081:5001 ${{secrets.REGISTRY_USERNAME}}/my-image-name:${{github.run_number}}
 
 
